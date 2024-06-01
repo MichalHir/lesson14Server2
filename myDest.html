@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="input-group mb-3">
+    <!-- <span class="input-group-text" id="basic-addon1" style="width: 400px;">destination name</span> -->
+    <input type="text" class="form-control" id="name1" placeholder="destination name" style="width: 400px;">
+    <input type="text" class="form-control" id="score" placeholder="destination score" style="width: 400px;">
+    <input type="text" class="form-control" id="image" placeholder="destination image" style="width: 400px;">
+    <input type="text" class="form-control" id="description" placeholder="destination description"
+      style="width: 400px;">
+  </div>
+  </div>
+  <div>
+    <!-- <button onclick="addDestination()" class="btn btn-info">add Miami</button> -->
+    <!-- <button onclick="addDestination2()" class="btn btn-info">add India</button> -->
+    <button onclick="addNewDestination()" class="btn btn-info">add new</button>
+  </div>
+  <!-- <div id="display"></div> -->
+  <div id="display2"></div>
+
+  <script>
+    let myDestinations;
+    // axios.get('http://localhost:3000/myDestinations')
+    async function getDestinations() {
+      const response = await axios.get(
+        'http://localhost:3000/myDestinations'
+      ); //request
+      myDestinations = response.data;
+      display2.innerHTML = myDestinations.map(
+        (destinations) =>
+          // `${destinations.name}-${destinations.score}<button onclick="deleteDes(${destinations.id})" class="btn btn-secondary">delete</button><button onclick="editDes(${destinations.id})" class="btn btn-secondary">edit</button>  <br>`
+          `<div class="card" style="width: 18rem;">
+  <img src="${destinations.image}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">Name:${destinations.name} <br> Score:${destinations.score} <br>
+      Descriptionn:${destinations.description} <br> <button onclick="deleteDes('${(destinations.id).toString()}')" class="btn btn-secondary">delete</button><button onclick="editDes('${(destinations.id).toString()}')" class="btn btn-secondary">edit</button></p>
+  </div>
+</div>`
+      ); // map like for (const destinations)
+    }
+    getDestinations();
+
+    // async function getDest() {
+    //   const response = await axios.get(
+    //     'http://localhost:3000/myDestinations/1'
+    //   ); //request
+    //   dest1 = response.data;
+    //   display.innerHTML = dest1.description;
+    // }
+    // //for (let i = 0; i < myDestinations.length; i++) {
+    // //await axios.get('http://localhost:3000/myDestinations/1')
+    // getDest();
+
+    //  "id":"1",
+    //   "name": "Barcelona",
+    //   "score": 8.5,
+    //   "description": "the city Barcelona",
+    //   "image": "https://picsum.photos/seed/${element}/40/20"
+    // const newDestination = {
+    //   name: 'Miami',
+    //   description: 'the city Miami',
+    //   image: 'https://picsum.photos/seed/${element}/40/20',
+    //   score: 8.5,
+    // };
+    // async function addDestination() {
+    //   axios.post(`http://localhost:3000/myDestinations`, newDestination);
+    //console.log('added') //doesnt appear with request(post)
+    //alert('Miamy added');
+    //getDestinations();
+    // }
+
+    // async function addDestination2() {
+    //   newDestination2 = {
+    //     name: 'India',
+    //     description: 'the city India',
+    //     image: 'https://picsum.photos/seed/${element}/40/20',
+    //     score: 8.5,
+    //   };
+    //   axios.post(`http://localhost:3000/myDestinations`, newDestination2);
+    //   alert(' India added');
+    //   getDest();
+    // }
+    async function addNewDestination() {
+      newDestination3 = {
+        name: name1.value,
+        description: description.value,
+        image: image.value, //'https://picsum.photos/seed/${element}/40/20',
+        score: score.value,
+      };
+      axios.post(`http://localhost:3000/myDestinations`, newDestination3);
+    }
+
+    async function deleteDes(desId) {
+      //DELETE /posts/:id 
+      const response = await axios.delete(`http://localhost:3000/myDestinations/${desId}`)
+    }
+
+    async function editDes(desId) {
+      let desIdSt=desId.toString()
+      console.log(desIdSt)
+      // PUT    /posts/:id
+      // PATCH  /posts/:id
+      const updatedData = {
+        name: name1.value,
+        description: description.value,
+        image: image.value, //'https://picsum.photos/seed/${element}/40/20',
+        score: score.value,
+      };
+      const response = await axios.put(
+        `http://localhost:3000/myDestinations/${String(desId)}`,
+        updatedData
+      );
+    }
+  </script>
+</body>
+
+</html>

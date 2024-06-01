@@ -1,0 +1,47 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    },
+    {
+      "id": "3",
+      "title": "yet another title",
+      "views": 5500
+    },
+    {
+      "id": "4",
+      "title": "yet another title2",
+      "views": 5600
+    }
+  ],
+  "myDestinations": [
+    {
+      "id": "1",
+      "name": "Barcelona",
+      "score": 8.5,
+      "description": "the city Barcelona",
+      "image": "https://picsum.photos/seed/${element}/40/20"
+    },
+    {
+      "id": "2",
+      "name": "New York",
+      "score": 8.5,
+      "description": "the city New York",
+      "image": "https://picsum.photos/seed/${element}/40/20"
+    },
+    {
+      "id": "3",
+      "name": "Los Angeles",
+      "score": 8.5,
+      "description": "the city Los Angeles",
+      "image": "https://picsum.photos/seed/${element}/40/20"
+    }
+  ]
+}

@@ -26,9 +26,11 @@
 
   <script>
     let myDestinations;
+    //let formerHost="http://localhost:3000/myDestinations"
+    let host="https://michalhir.github.io/lesson14Server2/"
     async function getDestinations() {
       const response = await axios.get(
-        'http://localhost:4000/myDestinations'
+        'https://michalhir.github.io/lesson14Server2/'
       ); 
       myDestinations = response.data;
       const cardHtml = myDestinations.map(
@@ -56,12 +58,12 @@
         image: image.value, //'https://picsum.photos/seed/${element}/40/20',
         score: score.value,
       };
-      axios.post(`http://localhost:4000/myDestinations`, newDestination3);
+      axios.post(`https://michalhir.github.io/lesson14Server2/`, newDestination3);
       getDestinations();
     }
 
     async function deleteDes(desId) {
-      const response = await axios.delete(`http://localhost:4000/myDestinations/${String(desId)}`)
+      const response = await axios.delete(`http://localhost:3000/myDestinations/${desId}`)
     }
 
     async function editDes(desId) {
@@ -74,7 +76,7 @@
         score: score.value,
       };
       const response = await axios.put(
-        `http://localhost:4000/myDestinations/${desId}`,
+        `https://michalhir.github.io/lesson14Server2/${desId}`,
         updatedData
       );
     }

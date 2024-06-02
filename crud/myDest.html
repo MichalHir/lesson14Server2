@@ -21,6 +21,7 @@
   </div>
   <div>
     <button onclick="addNewDestination()" class="btn btn-info">add new</button>
+    <button onclick="resDestination()" class="btn btn-info">reset</button>
   </div>
   <div id="display2"></div>
 
@@ -77,6 +78,53 @@
         `http://localhost:4000/myDestinations/${desId}`,
         updatedData
       );
+    }
+    async function resDestination() {
+      const response = await axios.get(
+        'http://localhost:4000/myDestinations'
+      );
+      myDestinations = response.data;
+      await Promise.all(myDestinations.map(destination => deleteDes(destination.id)));
+      const resetData1 =
+      {
+        name: "Barcelona",
+        score: 8.5,
+        description: "the city Barcelona",
+        image: "https://picsum.photos/seed/${element}/40/20"
+      }//,
+      // {
+      //   name: "New York",
+      //   score: 8.5,
+      //   description: "the city New York",
+      //   image: "https://picsum.photos/seed/${element}/40/20"
+      // },
+      // {
+      //   name: "Los Angeles",
+      //   score: 8.5,
+      //   description: "the city Los Angeles",
+      //   image: "https://picsum.photos/seed/${element}/40/20"
+      // }
+      const resetData2 =
+      {
+        name: "New York",
+        score: 8.5,
+        description: "the city New York",
+        image: "https://picsum.photos/seed/${element}/40/20"
+      }
+      const resetData3 =
+      {
+        name: "Los Angeles",
+        score: 8.5,
+        description: "the city Los Angeles",
+        image: "https://picsum.photos/seed/${element}/40/20"
+      }
+      // const cardHtml = myDestinations.map(
+      //   (destinations) =>
+      //     deleteDes('${destination.id}'))
+      axios.post(`http://localhost:4000/myDestinations`, resetData1);
+      axios.post(`http://localhost:4000/myDestinations`, resetData2);
+      axios.post(`http://localhost:4000/myDestinations`, resetData3);
+      getDestinations();
     }
   </script>
 </body>

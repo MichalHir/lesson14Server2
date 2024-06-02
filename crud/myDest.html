@@ -86,45 +86,47 @@
       );
       myDestinations = response.data;
       await Promise.all(myDestinations.map(destination => deleteDes(destination.id)));
-      const resetData1 =
+      const resetData1 =[
       {
         name: "Barcelona",
         score: 8.5,
         description: "the city Barcelona",
         image: "https://picsum.photos/seed/${element}/40/20"
-      }//,
+      },
+       {
+         name: "New York",
+         score: 8.5,
+        description: "the city New York",
+        image: "https://picsum.photos/seed/${element}/40/20"
+       },
+       {
+         name: "Los Angeles",
+         score: 8.5,
+         description: "the city Los Angeles",
+         image: "https://picsum.photos/seed/${element}/40/20"
+       }]
+       resetData1.map(
+        (destinations) =>axios.post(`${host}`, destinations))
+      // const resetData2 =
       // {
       //   name: "New York",
       //   score: 8.5,
       //   description: "the city New York",
       //   image: "https://picsum.photos/seed/${element}/40/20"
-      // },
+      // }
+      // const resetData3 =
       // {
       //   name: "Los Angeles",
       //   score: 8.5,
       //   description: "the city Los Angeles",
       //   image: "https://picsum.photos/seed/${element}/40/20"
       // }
-      const resetData2 =
-      {
-        name: "New York",
-        score: 8.5,
-        description: "the city New York",
-        image: "https://picsum.photos/seed/${element}/40/20"
-      }
-      const resetData3 =
-      {
-        name: "Los Angeles",
-        score: 8.5,
-        description: "the city Los Angeles",
-        image: "https://picsum.photos/seed/${element}/40/20"
-      }
-      // const cardHtml = myDestinations.map(
-      //   (destinations) =>
-      //     deleteDes('${destination.id}'))
-      axios.post(`${host}`, resetData1);
-      axios.post(`${host}`, resetData2);
-      axios.post(`${host}`, resetData3);
+      // // const cardHtml = myDestinations.map(
+      // //   (destinations) =>
+      // //     deleteDes('${destination.id}'))
+      // axios.post(`${host}`, resetData1);
+      // axios.post(`${host}`, resetData2);
+      // axios.post(`${host}`, resetData3);
       getDestinations();
     }
   </script>

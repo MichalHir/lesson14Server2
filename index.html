@@ -28,15 +28,13 @@
   <script>
     let myDestinations;
     //let formerHost="http://localhost:3000/myDestinations"
-    let host="https://michalhir.github.io/lesson14_15_16Server22/"
+    let host = "https://michalhir.github.io/lesson14_15_16Server22/"
     async function getDestinations() {
-      const response = await axios.get(
-        `${host}`
-      ); 
+      const response = await axios.get(`${host}`);
       myDestinations = response.data;
       const cardHtml = myDestinations.map(
-        (destinations) =>
-                `<div class="col-md-3 mb-3" ">
+        (destinations =>
+          `<div class="col-md-3 mb-3" ">
                 <div class="card" style="width: 18rem;max-width: 200px;">
                     <img src="${destinations.image}" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -46,10 +44,11 @@
                         <button class="btn btn-primary" onclick="editDes('${destinations.id}')">Edit</button>
                     </div>
                 </div>
-                </div>`
-     ); // map like for (const destinations)
-     display2.innerHTML = `<div class="row">${cardHtml}</div>`;
-      }
+                </div>`).join(''));
+      // map like for (const destinations)
+      const display2 = document.getElementById('display2'); // Ensure this element exists in your HTML
+      display2.innerHTML = `<div class="row">${cardHtml}</div>`;
+    }
     getDestinations();
 
     async function addNewDestination() {
@@ -68,7 +67,7 @@
     }
 
     async function editDes(desId) {
-      let desIdSt=desId.toString()
+      let desIdSt = desId.toString()
       console.log(desIdSt)
       const updatedData = {
         name: name1.value,

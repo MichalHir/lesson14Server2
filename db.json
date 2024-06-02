@@ -23,21 +23,21 @@
   ],
   "myDestinations": [
     {
-      "id": "1",
+      "id": "e9aa",
       "name": "Barcelona",
       "score": 8.5,
       "description": "the city Barcelona",
       "image": "https://picsum.photos/seed/${element}/40/20"
     },
     {
-      "id": "2",
+      "id": "bb8e",
       "name": "New York",
       "score": 8.5,
       "description": "the city New York",
       "image": "https://picsum.photos/seed/${element}/40/20"
     },
     {
-      "id": "3",
+      "id": "6af3",
       "name": "Los Angeles",
       "score": 8.5,
       "description": "the city Los Angeles",

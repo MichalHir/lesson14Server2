@@ -27,9 +27,10 @@
 
   <script>
     let myDestinations;
+    let host="http://localhost:4000/myDestinations"
     async function getDestinations() {
       const response = await axios.get(
-        'http://localhost:4000/myDestinations'
+        `${host}`
       ); 
       myDestinations = response.data;
       const cardHtml = myDestinations.map(
@@ -57,12 +58,12 @@
         image: image.value, //'https://picsum.photos/seed/${element}/40/20',
         score: score.value,
       };
-      axios.post(`http://localhost:4000/myDestinations`, newDestination3);
+      axios.post(`${host}`, newDestination3);
       getDestinations();
     }
 
     async function deleteDes(desId) {
-      const response = await axios.delete(`http://localhost:4000/myDestinations/${String(desId)}`)
+      const response = await axios.delete(`${host}/${String(desId)}`)
     }
 
     async function editDes(desId) {
@@ -75,13 +76,13 @@
         score: score.value,
       };
       const response = await axios.put(
-        `http://localhost:4000/myDestinations/${desId}`,
+        `${host}/${desId}`,
         updatedData
       );
     }
     async function resDestination() {
       const response = await axios.get(
-        'http://localhost:4000/myDestinations'
+        `${host}`
       );
       myDestinations = response.data;
       await Promise.all(myDestinations.map(destination => deleteDes(destination.id)));
@@ -121,9 +122,9 @@
       // const cardHtml = myDestinations.map(
       //   (destinations) =>
       //     deleteDes('${destination.id}'))
-      axios.post(`http://localhost:4000/myDestinations`, resetData1);
-      axios.post(`http://localhost:4000/myDestinations`, resetData2);
-      axios.post(`http://localhost:4000/myDestinations`, resetData3);
+      axios.post(`${host}`, resetData1);
+      axios.post(`${host}`, resetData2);
+      axios.post(`${host}`, resetData3);
       getDestinations();
     }
   </script>

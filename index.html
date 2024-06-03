@@ -28,7 +28,7 @@
   <script>
     let myDestinations;
     //let formerHost="http://localhost:3000/myDestinations"
-    let host = "https://michalhir.github.io/lesson14_15_16Server22/"
+    let host = "https://json-server-kive.onrender.com"
     async function getDestinations() {
       const response = await axios.get(`${host}`);
       myDestinations = response.data;

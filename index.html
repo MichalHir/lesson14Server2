@@ -28,7 +28,7 @@
   <script>
     let myDestinations;
     //let formerHost="http://localhost:3000/myDestinations"
-    let host = "https://json-server-kive.onrender.com"
+    let host = "https://json-server-kive.onrender.com/myDestinations"
     async function getDestinations() {
       const response = await axios.get(`${host}`);
       myDestinations = response.data;
@@ -47,7 +47,6 @@
       //           </div>`));
       // map like for (const destinations)
       let cardHtml = '';
-
     for (const destination of myDestinations) {
       cardHtml += `
         <div class="col-md-3 mb-3">

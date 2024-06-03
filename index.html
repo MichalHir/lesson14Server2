@@ -47,8 +47,8 @@
       //           </div>`));
       // map like for (const destinations)
       let cardHtml = '';
-    for (const destination of myDestinations) {
-      cardHtml += `
+      for (const destination of myDestinations) {
+        cardHtml += `
         <div class="col-md-3 mb-3">
           <div class="card" style="width: 18rem; max-width: 200px;">
             <img src="${destination.image}" class="card-img-top" alt="...">
@@ -60,13 +60,13 @@
             </div>
           </div>
         </div>`;
-    }
+      }
       const display2 = document.getElementById('display2'); // Ensure this element exists in your HTML
       if (display2) {
-      display2.innerHTML = `<div class="row">${cardHtml}</div>`;
-    } else {
-      alert('Element with id "display2" not found');
-    }
+        display2.innerHTML = `<div class="row">${cardHtml}</div>`;
+      } else {
+        alert('Element with id "display2" not found');
+      }
       //display2.innerHTML = `<div class="row">${cardHtml}</div>`;
     }
     getDestinations();
@@ -84,6 +84,7 @@
 
     async function deleteDes(desId) {
       const response = await axios.delete(`${host}/${desId}`)
+      getDestinations();
     }
 
     async function editDes(desId) {
@@ -99,7 +100,9 @@
         `${host}/${desId}`,
         updatedData
       );
+      getDestinations();
     }
+    
     async function resDestination() {
       const response = await axios.get(
         `${host}`

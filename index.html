@@ -32,25 +32,41 @@
     async function getDestinations() {
       const response = await axios.get(`${host}`);
       myDestinations = response.data;
-      const cardHtml = myDestinations.map(
-        (destinations =>
-          `<div class="col-md-3 mb-3" ">
-                <div class="card" style="width: 18rem;max-width: 200px;">
-                    <img src="${destinations.image}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">${destinations.name} - ${destinations.score}</h5>
-                        <p class="card-text">${destinations.description}</p>
-                        <button class="btn btn-danger" onclick="deleteDes('${destinations.id}')">Delete</button>
-                        <button class="btn btn-primary" onclick="editDes('${destinations.id}')">Edit</button>
-                    </div>
-                </div>
-                </div>`).join(''));
+      // const cardHtml = myDestinations.map(
+      //   (destinations =>
+      //     `<div class="col-md-3 mb-3" ">
+      //           <div class="card" style="width: 18rem;max-width: 200px;">
+      //               <img src="${destinations.image}" class="card-img-top" alt="...">
+      //               <div class="card-body">
+      //                   <h5 class="card-title">${destinations.name} - ${destinations.score}</h5>
+      //                   <p class="card-text">${destinations.description}</p>
+      //                   <button class="btn btn-danger" onclick="deleteDes('${destinations.id}')">Delete</button>
+      //                   <button class="btn btn-primary" onclick="editDes('${destinations.id}')">Edit</button>
+      //               </div>
+      //           </div>
+      //           </div>`));
       // map like for (const destinations)
+      let cardHtml = '';
+
+    for (const destination of myDestinations) {
+      cardHtml += `
+        <div class="col-md-3 mb-3">
+          <div class="card" style="width: 18rem; max-width: 200px;">
+            <img src="${destination.image}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">${destination.name} - ${destination.score}</h5>
+              <p class="card-text">${destination.description}</p>
+              <button class="btn btn-danger" onclick="deleteDes('${destination.id}')">Delete</button>
+              <button class="btn btn-primary" onclick="editDes('${destination.id}')">Edit</button>
+            </div>
+          </div>
+        </div>`;
+    }
       const display2 = document.getElementById('display2'); // Ensure this element exists in your HTML
       if (display2) {
       display2.innerHTML = `<div class="row">${cardHtml}</div>`;
     } else {
-      console.error('Element with id "display2" not found');
+      alert('Element with id "display2" not found');
     }
       //display2.innerHTML = `<div class="row">${cardHtml}</div>`;
     }

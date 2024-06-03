@@ -96,7 +96,7 @@
         score: score.value,
       };
       const response = await axios.put(
-        `${host}${desId}`,
+        `${host}/${desId}`,
         updatedData
       );
     }

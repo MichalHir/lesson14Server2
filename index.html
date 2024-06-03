@@ -47,7 +47,12 @@
                 </div>`).join(''));
       // map like for (const destinations)
       const display2 = document.getElementById('display2'); // Ensure this element exists in your HTML
+      if (display2) {
       display2.innerHTML = `<div class="row">${cardHtml}</div>`;
+    } else {
+      console.error('Element with id "display2" not found');
+    }
+      //display2.innerHTML = `<div class="row">${cardHtml}</div>`;
     }
     getDestinations();
 
